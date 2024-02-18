@@ -29,6 +29,24 @@
     // todo: as it revolves around the center as well.  All optional parameters for the vector can be left as the default.
     // todo: note that sin and cosine in javascript can be called using Math.sin() and Math.cos()
 
+    // Initialize 2D engine
+    let engine = ThreeEngine.new_default_2d();
+
+    // Start an animation loop
+    engine.animation_loop(() => {
+        // Obtain current time elapsed for constant speed
+        let time_elapsed = engine.get_time_elapsed()
+        // Theta ranges from 0 to 2π completes a circle. And it has to be done in 1s. So:
+        let theta = (time_elapsed % 1) * (2 * Math.PI);  // Proportion of 2π as theta.
+        // Calculate orbit x and y based on the parameterization
+        let orbit_x = 1 * Math.cos(theta) + 0;  // orbit origin is (0,0); orbit radius is 1 unit.
+        let orbit_y = 1 * Math.sin(theta) + 0;
+        // Draw the new sphere at the orbit at this time (NOTE: need z=0 to draw in 2D, not fixed yet).
+        engine.draw_debug_sphere([orbit_x, orbit_y, 0], 0.05);  // using default color and opacity
+        // Draw the vector pointing towards the sphere from the origin.
+        engine.draw_debug_vector([0,0], [orbit_x, orbit_y]);  // keep the rest as default.
+    });
+
 </script>
 </body>
 </html>

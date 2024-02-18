@@ -24,6 +24,14 @@
     import {ThreeEngine} from "../js/utils/utils_three.js";
 
     // todo: draw a sphere in a 3D ThreeEngine scene at the point [1,1,1] with radius 0.1, color 0x00eeff, and opacity 0.7
+    // Initialize the 3D engine, which calls default generic scene initializer with setups.
+    let engine = ThreeEngine.new_default_3d();
+    // Start an animation loop to draw stuff onto the screen
+    engine.animation_loop(() => {
+        // everything within these brackets will run as fast as possible on screen, something like 60 fps
+        // Draw sphere object with the given parameters, called via keyword arguments
+        engine.draw_debug_sphere([1,1,1], 0.1, 0x00eeff, 0.7);
+    });
 
 </script>
 </body>
